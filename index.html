@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('wedding-theme');
+        document.documentElement.dataset.theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bindu Madhavi (Josephin) &amp; Venkatesh Babu (Rajkumar) • Posupo's Wedding Invitation</title>
@@ -185,6 +195,18 @@
       opacity: 0; visibility: hidden; pointer-events: none;
       transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.2s ease;
     }
+    .theme-floating-btn {
+      position:fixed; left:1rem; bottom:1.25rem; z-index:60;
+      display:inline-flex; align-items:center; gap:.55rem;
+      padding:.7rem 1rem; border-radius:9999px;
+      border:1px solid rgba(190,143,99,.38);
+      background:rgba(255,249,246,.92); color:#694b5d;
+      box-shadow:0 14px 36px rgba(44,31,39,.18);
+      backdrop-filter:blur(10px);
+      transition:background-color .45s ease,color .45s ease,border-color .45s ease,transform .25s ease,box-shadow .35s ease;
+    }
+    .theme-floating-btn:hover { transform:translateY(-2px); box-shadow:0 18px 42px rgba(44,31,39,.24); }
+    html[data-theme="dark"] .theme-floating-btn { background:rgba(48,40,51,.94); color:#f4dfd5; border-color:rgba(231,196,165,.34); }
     body.doors-opened .music-floating-btn {
       opacity: 1; visibility: visible; pointer-events: auto;
     }
@@ -332,27 +354,34 @@
       }
     }
 
-    @media (prefers-color-scheme: dark) {
-      body { background:#17141a; color:#f2e8eb; color-scheme:dark; }
-      .content-bg-section { background-color:#211b22; color:#efe5e9; }
-      .content-bg-photo { opacity:.12; filter:saturate(.68) brightness(.62); }
-      .content-bg-veil { background:linear-gradient(180deg,#211b22 0%,rgba(33,27,34,.9) 22%,rgba(33,27,34,.9) 78%,#211b22 100%); }
-      .editorial-card { background:rgba(45,37,46,.96)!important; border-color:rgba(226,190,177,.23); color:#f2e8eb; box-shadow:0 22px 55px -16px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07); }
-      .editorial-card:hover { border-color:rgba(226,190,177,.48); box-shadow:0 30px 68px -14px rgba(0,0,0,.54); }
-      .editorial-card h3,.content-bg-section h2,.content-bg-section h3 { color:#fff1eb!important; font-family:'Cormorant Garamond',serif; letter-spacing:.025em; }
-      .content-bg-section p { color:#e7dce1!important; }
-      .content-bg-section i { color:#eccbb9!important; }
-      .content-bg-section [class*="bg-blue-950"] { background-color:rgba(226,190,177,.13)!important; color:#f1d9d1!important; }
-      .content-bg-section [class*="border-blue"] { border-color:rgba(226,190,177,.24)!important; }
-      #dateScratchSection .bg-gradient-to-br { background:linear-gradient(135deg,#43343e,#302833 58%,#26323a)!important; color:#fff0e9!important; }
-      #dateScratchSection .bg-gradient-to-br p { color:#fff0e9!important; }
-      #dateScratchSection .bg-gradient-to-br p:first-child { color:#f1c6b2!important; }
-      #eventsSection button[class*="text-[#1e3a8a]"] { color:#f4ddd4!important; border-color:rgba(226,190,177,.36)!important; }
-      #familySection .editorial-card [class*="bg-blue-950/"] { background-color:rgba(255,255,255,.045)!important; }
-      footer { background:#211b22!important; border-color:rgba(226,190,177,.2)!important; }
-      footer p { color:#f0e2e4!important; }
-      #customizerModal input { background:#fffaf8; color:#30252d; }
-    }
+    html[data-theme="dark"] body { background:#17141a; color:#f2e8eb; color-scheme:dark; transition:background-color .55s ease,color .55s ease; }
+    html[data-theme="dark"] .content-bg-section { background-color:#211b22; color:#efe5e9; }
+    html[data-theme="dark"] .content-bg-photo { opacity:.12; filter:saturate(.68) brightness(.62); }
+    html[data-theme="dark"] .content-bg-veil { background:linear-gradient(180deg,#211b22 0%,rgba(33,27,34,.9) 22%,rgba(33,27,34,.9) 78%,#211b22 100%); }
+    html[data-theme="dark"] .editorial-card { background:rgba(45,37,46,.96)!important; border-color:rgba(226,190,177,.23); color:#f2e8eb; box-shadow:0 22px 55px -16px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07); }
+    html[data-theme="dark"] .editorial-card:hover { border-color:rgba(226,190,177,.48); box-shadow:0 30px 68px -14px rgba(0,0,0,.54); }
+    html[data-theme="dark"] .editorial-card h3,html[data-theme="dark"] .content-bg-section h2,html[data-theme="dark"] .content-bg-section h3 { color:#fff1eb!important; font-family:'Cormorant Garamond',serif; letter-spacing:.025em; }
+    html[data-theme="dark"] .content-bg-section p { color:#e7dce1!important; }
+    html[data-theme="dark"] .content-bg-section i { color:#eccbb9!important; }
+    html[data-theme="dark"] .content-bg-section [class*="bg-blue-950"] { background-color:rgba(226,190,177,.13)!important; color:#f1d9d1!important; }
+    html[data-theme="dark"] .content-bg-section [class*="border-blue"] { border-color:rgba(226,190,177,.24)!important; }
+    html[data-theme="dark"] #dateScratchSection .bg-gradient-to-br { background:linear-gradient(135deg,#43343e,#302833 58%,#26323a)!important; color:#fff0e9!important; }
+    html[data-theme="dark"] #dateScratchSection .bg-gradient-to-br p { color:#fff0e9!important; }
+    html[data-theme="dark"] #dateScratchSection .bg-gradient-to-br p:first-child { color:#f1c6b2!important; }
+    html[data-theme="dark"] #eventsSection button[class*="text-[#1e3a8a]"] { color:#f4ddd4!important; border-color:rgba(226,190,177,.36)!important; }
+    html[data-theme="dark"] #familySection .editorial-card [class*="bg-blue-950/"] { background-color:rgba(255,255,255,.045)!important; }
+    html[data-theme="dark"] footer { background:#211b22!important; border-color:rgba(226,190,177,.2)!important; }
+    html[data-theme="dark"] footer p { color:#f0e2e4!important; }
+    html[data-theme="dark"] #customizerModal input { background:#fffaf8; color:#30252d; }
+    html[data-theme="dark"] #heroSection { background:linear-gradient(135deg,#19151a 0%,#261d24 52%,#171c23 100%); }
+    html[data-theme="dark"] #heroParallaxBgWrap img { filter:saturate(.58) brightness(.62); }
+    html[data-theme="dark"] #heroSection .hero-card-float { background:rgba(37,30,38,var(--hero-panel-alpha,.9))!important; border-color:rgba(231,196,165,.72)!important; box-shadow:0 24px 65px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12); }
+    html[data-theme="dark"] #heroSection .hero-card-float::before { border-color:rgba(231,196,165,.32); }
+    html[data-theme="dark"] #heroSection .hero-name-radiance { background-image:linear-gradient(to bottom,#fff0e4,#e8bd9d,#fff6ea)!important; }
+    html[data-theme="dark"] #heroSection .hero-reveal-item,html[data-theme="dark"] #heroSection p { color:#f0e2e4; }
+    html[data-theme="dark"] #heroSection .hero-reveal-item:first-of-type { color:#f4d8c1; }
+    html[data-theme="dark"] #heroSection .hero-reveal-item span { color:#f4d8c1!important; }
+    html[data-theme="dark"] #heroSection .hero-hanging-wire { filter:brightness(1.15); }
   </style>
 </head>
 <body class="antialiased selection:bg-blue-100 selection:text-blue-950">
@@ -727,6 +756,11 @@
         <span class="eq-3 w-1 h-2.5 bg-[#d97706] rounded-full"></span>
         <span class="eq-4 w-1 h-3 bg-[#784b61] rounded-full"></span>
       </span>
+    </button>
+    <button type="button" id="themeToggleBtn" onclick="toggleWeddingTheme()" aria-label="Switch to dark mode" aria-pressed="false"
+            class="theme-floating-btn font-medium text-xs sm:text-sm tracking-wide cursor-pointer">
+      <span id="themeToggleIcon" aria-hidden="true">☾</span>
+      <span id="themeToggleLabel">Dark mode</span>
     </button>
 
   </section>
@@ -1462,6 +1496,28 @@
       const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }), { threshold: 0.12 });
       document.querySelectorAll('.scroll-reveal, .gallery-tile').forEach(el => obs.observe(el));
     });
+  </script>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('themeToggleBtn');
+      const label = document.getElementById('themeToggleLabel');
+      const icon = document.getElementById('themeToggleIcon');
+      const syncThemeControl = () => {
+        const isDark = root.dataset.theme === 'dark';
+        button.setAttribute('aria-pressed', String(isDark));
+        button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        label.textContent = isDark ? 'Light mode' : 'Dark mode';
+        icon.textContent = isDark ? '☼' : '☾';
+      };
+      window.toggleWeddingTheme = () => {
+        const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = nextTheme;
+        try { localStorage.setItem('wedding-theme', nextTheme); } catch {}
+        syncThemeControl();
+      };
+      syncThemeControl();
+    })();
   </script>
 </body>
 </html>
