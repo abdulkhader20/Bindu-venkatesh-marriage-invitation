@@ -215,19 +215,18 @@
     .content-bg-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22; pointer-events: none; }
     .content-bg-veil { position: absolute; inset: 0; background: linear-gradient(180deg, #f8f5f0 0%, rgba(248, 245, 240, 0.72) 22%, rgba(248, 245, 240, 0.72) 78%, #f8f5f0 100%); pointer-events: none; }
 
-    .scroll-reveal { opacity: 0; transform: translate3d(0,24px,0); transition: opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1); }
+    .scroll-reveal { opacity: 0; transform: translate3d(36px,0,0); transition: opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1); }
     .scroll-reveal.is-visible { opacity: 1; transform: translate3d(0,0,0); }
-    .stagger-child { opacity: 0; transform: translate3d(0,16px,0); transition: opacity .58s cubic-bezier(.2,.7,.2,1), transform .58s cubic-bezier(.2,.7,.2,1); transition-delay: var(--stagger-delay, 0ms); }
+    .stagger-child { opacity: 0; transform: translate3d(24px,0,0); transition: opacity .58s cubic-bezier(.2,.7,.2,1), transform .58s cubic-bezier(.2,.7,.2,1); transition-delay: var(--stagger-delay, 0ms); }
     .scroll-reveal.is-visible .stagger-child { opacity: 1; transform: translate3d(0,0,0); }
 
     /* Gallery photographs glide in from alternating sides as they enter the viewport. */
-    .gallery-tile { opacity:0; transform:translate3d(var(--gallery-enter-x,-52px),12px,0); transition:opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; transition-delay:var(--stagger-delay,0ms); }
-    .gallery-tile.from-right { --gallery-enter-x:72px; --gallery-enter-rotate:2deg; }
+    .gallery-tile { opacity:0; transform:translate3d(48px,0,0); transition:opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; transition-delay:var(--stagger-delay,0ms); }
     .gallery-tile.is-visible { opacity:1; transform:translate3d(0,0,0); }
     .gallery-tile.is-visible:hover { transform:translate3d(0,-4px,0); box-shadow:0 18px 36px rgba(30,41,59,.22); }
     .gallery-tile img { transition:transform .7s cubic-bezier(.2,.75,.2,1); }
     .gallery-tile:hover img { filter:saturate(1.12); }
-    @media(max-width:768px) { .gallery-tile { transform:translate3d(var(--gallery-enter-x,-28px),10px,0); } .gallery-tile.is-visible:hover { transform:none; box-shadow:none; } }
+    @media(max-width:768px) { .scroll-reveal { transform:translate3d(20px,0,0); } .stagger-child { transform:translate3d(14px,0,0); } .gallery-tile { transform:translate3d(24px,0,0); } .gallery-tile.is-visible:hover { transform:none; box-shadow:none; } }
 
 
     /* A softer chapel palette and a gradual handoff from the opening doors. */
