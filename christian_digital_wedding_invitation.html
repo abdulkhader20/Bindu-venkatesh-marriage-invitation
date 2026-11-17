@@ -332,10 +332,36 @@
       #heroParallaxCardWrap { padding-left:.5rem; padding-right:.5rem; }
       #heroSection .hero-card-float { padding:2rem 1rem!important; }
     }
-    @media (max-height: 680px) and (orientation: landscape) {
-      #heroSection .hero-card-float { min-height:0!important; padding-block:1.5rem!important; }
-      #heroSection .hero-name-radiance { font-size:clamp(2.25rem,7vh,4rem); }
-      .hero-hanging-wire { top:-84px; height:98px; }
+    @media (max-width: 360px) {
+      #heroSection .hero-card-float { min-height:min(54svh,430px)!important; padding:1.5rem .75rem!important; border-radius:1.1rem!important; }
+      #heroSection .hero-card-float::before { inset:7px; }
+      #heroSection .hero-name-radiance { font-size:clamp(1.9rem,8.6vw,2.45rem); line-height:1; padding-inline:.1rem; }
+      #heroSection .hero-card-float > p:first-of-type { font-size:.92rem; }
+      #heroParallaxCardWrap { padding-inline:.5rem; }
+      .hero-hanging-wire { left:8%; }
+      .hero-hanging-wire-right { left:auto; right:8%; }
+      .scroll-walk-cta { padding-inline:1rem; }
+    }
+    @media (min-width: 361px) and (max-width: 480px) {
+      #heroSection .hero-card-float { min-height:57svh!important; padding:1.8rem 1rem!important; border-radius:1.2rem!important; }
+      #heroSection .hero-name-radiance { font-size:clamp(2.12rem,8.5vw,2.65rem); line-height:1.02; padding-inline:.2rem; }
+      #heroParallaxCardWrap { padding-inline:.6rem; }
+      section.content-bg-section { padding-block:3.25rem; }
+      .editorial-card { border-radius:1.25rem; }
+    }
+    @media (min-width: 481px) and (max-width: 767px) {
+      #heroSection .hero-card-float { min-height:60svh!important; padding:2.25rem 1.35rem!important; }
+      #heroSection .hero-name-radiance { font-size:clamp(2.45rem,7.2vw,3.4rem); }
+      section.content-bg-section { padding-block:3.75rem; }
+    }
+    @media (max-height: 600px) and (orientation: landscape) {
+      #heroSection .hero-card-float { min-height:0!important; padding-block:.85rem!important; }
+      #heroSection .hero-name-radiance { font-size:clamp(1.8rem,5.4vh,2.6rem); line-height:1; padding-block:.1rem; }
+      #heroSection .hero-card-float > p:first-of-type { margin-bottom:.2rem; }
+      #heroSection .hero-card-float > p:nth-of-type(2) { margin-bottom:.45rem; }
+      #heroSection .hero-card-float > div.hero-reveal-item { margin-block:.1rem; }
+      .hero-hanging-wire { top:-72px; height:86px; }
+      #heroSection > .relative.z-30 { margin-top:.35rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
