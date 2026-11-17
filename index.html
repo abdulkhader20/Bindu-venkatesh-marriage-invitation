@@ -930,19 +930,9 @@
     function smoothScrollToSection(selector) {
       const targetEl = document.querySelector(selector);
       if (!targetEl) return;
-      const startY = window.scrollY;
-      const targetY = targetEl.getBoundingClientRect().top + startY - 24;
-      const distance = targetY - startY;
-      const duration = 1150;
-      let startTime = null;
-      const ease = t => t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
-      function step(ts) {
-        if (!startTime) startTime = ts;
-        const p = Math.min((ts - startTime) / duration, 1);
-        window.scrollTo(0, startY + distance * ease(p));
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targetY = targetEl.getBoundingClientRect().top + window.scrollY - 24;
+      window.scrollTo({ top: targetY, behavior: reduceMotion ? 'auto' : 'smooth' });
     }
 
     function initScratchCanvas() {
